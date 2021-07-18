@@ -118,5 +118,34 @@ namespace GypsyMagic.FrameAnimation
             }
             GUI.enabled = true;
         }
+
+        [MenuItem("Assets/Create Frame Animation", priority = 350)]
+        private static void FrameAnimationFromSelected()
+        {
+            string path = EditorUtility.SaveFilePanelInProject("New Frame Clip", "New Frame Clip", "asset", "Please enter a file name to save the animation");
+            if (path.Length != 0)
+            {
+                FrameClip fas = CreateInstance<FrameClip>();
+                fas.Frames = new Sprite[Selection.objects.Length];
+                for (int i = 0; i < Selection.objects.Length; ++i)
+                {
+                    fas.Frames[i] = (Sprite)Selection.objects[i];
+                }
+                AssetDatabase.CreateAsset(fas, path);
+            }
+        }
+
+        [MenuItem("Assets/Create Frame Animation", true)]
+        private static bool FrameAnimationFromSelectedValidation()
+        {
+            foreach (var selected in Selection.objects)
+            {
+                if (selected.GetType() != typeof(Sprite))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

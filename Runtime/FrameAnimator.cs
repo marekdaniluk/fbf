@@ -20,7 +20,7 @@ namespace GypsyMagic.FrameAnimation
         {
             if (_uuid == -1)
             {
-                _uuid = GetInstanceID();
+                _uuid = gameObject.GetInstanceID();
             }
             return _uuid;
         }

@@ -6,7 +6,7 @@ using UnityEngine.PlayerLoop;
 
 namespace GypsyMagic.FrameAnimation
 {
-    class FrameAnimationSystem
+    public class FrameAnimationSystem
     {
         private static readonly int RESERVED_MEMORY_SIZE = 64;
 
